@@ -1,0 +1,10 @@
+# Exact versions the test suites were run with (Python 3.13). Use these on a server if the ranges in requirements.txt ever misbehave:
+#   pip install -r requirements-tested.txt
+streamlit==1.67.0
+pandas==3.0.5
+openpyxl==3.1.5
+plotly==7.1.0
+python-pptx==1.0.2
+anthropic==2.6.0
+openai==3.46.0
+numpy==2.5.3

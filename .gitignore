@@ -1,0 +1,6 @@
+.venv/
+__pycache__/
+*.pyc
+launch_log.txt
+tests/packs/
+.streamlit/secrets.toml

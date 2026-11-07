@@ -1,0 +1,27 @@
+MEETING PLANNER: START HERE
+
+1. Unzip this folder anywhere (for example your Desktop).
+2. Double-click the start file:
+     Windows:  Start_Meeting_Planner.bat
+     Mac:      Start_Meeting_Planner.command
+3. The first time, it sets itself up (a few minutes, needs internet). After that it starts in seconds.
+4. Your browser opens with the program. Drop your Excel files. The meeting decks appear.
+5. To stop: close the black window.
+
+If Windows says "Windows protected your PC": click "More info", then "Run anyway".
+If the Mac says the file cannot be opened: right-click it, choose Open, then Open again.
+If Python is missing, the start file installs it for you (Windows 10/11 with winget); when it says "Python is installed", close the window and double-click the start file again.
+If that does not work it opens the download page instead: install Python 3.12 (tick "Add python.exe to PATH") and double-click again.
+
+Your Excel files are only read, never changed, and nothing is uploaded anywhere: it all runs on your own computer.
+
+This is a DRAFT tool: the key account manager reviews every deck before it goes to a customer.
+
+IF NOTHING HAPPENS
+  - Make sure you EXTRACTED the zip first (right-click the zip, Extract All). Do not start it from inside the zip.
+  - After starting, wait: the first run needs a few minutes. A black window with text must stay open.
+  - If it fails, a file called launch_log.txt appears next to the start file. Send it to whoever gave you the program.
+  - Last resort (copy the three lines into a Command Prompt opened in this folder):
+        py -3 -m venv .venv
+        .venv\Scripts\python -m pip install -r requirements.txt
+        .venv\Scripts\python -m streamlit run app.py

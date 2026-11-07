@@ -1,0 +1,4 @@
+.venv
+__pycache__
+launch_log.txt
+tests/packs
