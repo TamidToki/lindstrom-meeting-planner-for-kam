@@ -8,6 +8,12 @@ meeting (evidence-backed topics for new business, and the questions the customer
 with every number checked against a calculation; and exports a PowerPoint that contains only that customer. It works on any set of
 Lindström Excel files, not only the sample pack, and shows what it understood before it calculates anything.
 
+## Two prototypes in this repo
+- **Streamlit meeting planner** (this folder, at the repo root): https://lindstrom-meeting-planner-for-kam.streamlit.app/
+- **Lovable KAM AI assistant** (in `lovable-app/`): https://predictable-kam-ai.lovable.app/
+
+They are two separate prototypes of the same idea, built in parallel. `lovable-app/` is a copy of the Lovable app's source from [Kopux/Predictable-KAM-AI-Assistant](https://github.com/Kopux/Predictable-KAM-AI-Assistant) at commit `fbd8e9b942c3c9409b4458a4e9f1c5ac396079e7` (main, after the `v3.3-blank-start` tag), which matches the live Lovable app.
+
 ## Run
     pip install -r requirements.txt
     streamlit run app.py          # sample pack loads as the default demo

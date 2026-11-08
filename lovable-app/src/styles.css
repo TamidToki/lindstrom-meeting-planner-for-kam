@@ -1,0 +1,169 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-slide: var(--slide);
+  --color-slide-foreground: var(--slide-foreground);
+  --color-executive-foreground: var(--executive-foreground);
+  --color-executive-muted: var(--executive-muted);
+}
+
+:root {
+  --executive-foreground: oklch(0.99 0 0);
+  --executive-muted: oklch(0.85 0.04 235);
+  --gradient-executive: linear-gradient(115deg, oklch(0.26 0.11 262), oklch(0.37 0.12 257) 70%, oklch(0.44 0.1 240));
+  --gradient-brand: linear-gradient(145deg, oklch(0.3 0.12 262), oklch(0.59 0.13 239));
+  --gradient-healthy: linear-gradient(90deg, color-mix(in oklab, var(--success) 25%, var(--card)), color-mix(in oklab, var(--success) 55%, var(--card)));
+  --shadow-executive: 0 12px 30px -18px color-mix(in oklab, var(--primary) 55%, transparent);
+  --shadow-metric: 0 10px 24px -16px color-mix(in oklab, var(--foreground) 30%, transparent);
+  --shadow-step: 0 0 0 3px color-mix(in oklab, var(--accent) 12%, transparent);
+  --radius: 0.875rem;
+  --background: oklch(0.975 0.004 240);
+  --foreground: oklch(0.22 0.06 260);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.22 0.06 260);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.22 0.06 260);
+  --primary: oklch(0.3 0.12 262);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.94 0.025 235);
+  --secondary-foreground: oklch(0.3 0.12 262);
+  --muted: oklch(0.955 0.008 240);
+  --muted-foreground: oklch(0.5 0.03 250);
+  --accent: oklch(0.72 0.12 230);
+  --accent-foreground: oklch(0.2 0.07 260);
+  --destructive: oklch(0.58 0.2 27);
+  --destructive-foreground: oklch(0.98 0 0);
+  --success: oklch(0.62 0.14 150);
+  --warning: oklch(0.78 0.15 75);
+  --border: oklch(0.9 0.012 240);
+  --input: oklch(0.9 0.012 240);
+  --ring: oklch(0.3 0.12 262);
+  --chart-1: oklch(0.3 0.12 262);
+  --chart-2: oklch(0.72 0.12 230);
+  --chart-3: oklch(0.62 0.14 150);
+  --chart-4: oklch(0.55 0.1 200);
+  --chart-5: oklch(0.58 0.2 27);
+  --slide: oklch(0.26 0.11 262);
+  --slide-foreground: oklch(0.99 0 0);
+}
+
+.dark {
+  --background: oklch(0.17 0.04 262);
+  --foreground: oklch(0.96 0.005 240);
+  --card: oklch(0.22 0.05 262);
+  --card-foreground: oklch(0.96 0.005 240);
+  --popover: oklch(0.22 0.05 262);
+  --popover-foreground: oklch(0.96 0.005 240);
+  --primary: oklch(0.78 0.1 230);
+  --primary-foreground: oklch(0.18 0.06 262);
+  --secondary: oklch(0.3 0.05 262);
+  --secondary-foreground: oklch(0.96 0.005 240);
+  --muted: oklch(0.27 0.04 262);
+  --muted-foreground: oklch(0.72 0.03 240);
+  --accent: oklch(0.76 0.12 230);
+  --accent-foreground: oklch(0.18 0.06 262);
+  --destructive: oklch(0.68 0.19 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --success: oklch(0.72 0.14 150);
+  --warning: oklch(0.8 0.14 75);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.78 0.1 230);
+  --chart-1: oklch(0.78 0.1 230);
+  --chart-2: oklch(0.85 0.08 210);
+  --chart-3: oklch(0.72 0.14 150);
+  --chart-4: oklch(0.7 0.1 280);
+  --chart-5: oklch(0.68 0.19 25);
+  --slide: oklch(0.24 0.09 262);
+  --slide-foreground: oklch(0.99 0 0);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+  }
+  h1, h2, h3, .font-display {
+    font-family: var(--font-display);
+    letter-spacing: 0;
+  }
+}
+
+.brand-badge { background: var(--gradient-brand); color: var(--executive-foreground); }
+.executive-banner { background: var(--gradient-executive); box-shadow: var(--shadow-executive); }
+.step-current { box-shadow: var(--shadow-step); }
+.metric-tile { box-shadow: var(--shadow-metric); }
+.gauge-healthy { background: var(--gradient-healthy); }
+@media (prefers-reduced-motion: reduce) {
+  .metric-tile, .step-link, .step-link svg, .briefing-chevron, .tailor-arrow { transition: none; transform: none !important; }
+}
+
+.export-deck {
+  position: fixed;
+  left: -20000px;
+  top: 0;
+  width: 1200px;
+  pointer-events: none;
+}
+
+@media print {
+  @page { size: 1200px 675px; margin: 0; }
+  .no-print { display: none !important; }
+  body:has(.export-deck) [data-sonner-toaster] { display: none !important; }
+  body:has(.export-deck) { margin: 0; }
+  body:has(.export-deck) main { max-width: none; padding: 0; }
+  .export-deck { position: static; width: 1200px; margin: 0 !important; }
+  .export-deck .print-slide {
+    width: 1200px;
+    height: 675px;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+    break-inside: avoid;
+    break-after: page;
+    print-color-adjust: exact;
+  }
+  .export-deck .print-slide:last-child { break-after: auto; }
+}
