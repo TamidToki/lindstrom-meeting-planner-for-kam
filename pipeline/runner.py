@@ -205,28 +205,45 @@ def build_payload(T, issues, log, source_label: str) -> dict:
 
 
 def run_upload(path: str, filename: str) -> str:
-    try:
-        with open(path, "rb") as f:
-            blob = f.read()
-    except Exception:
-        return fail(["The uploaded file could not be read by the browser. Try saving it again and re-uploading."])
+    return run_uploads([path], [filename])
+
+
+def run_uploads(paths, filenames) -> str:
+    files = []
+    for p, n in zip(paths, filenames):
+        try:
+            with open(p, "rb") as f:
+                files.append((n, f.read()))
+        except Exception:
+            return fail([f"'{n}' could not be read by the browser. Try saving it again and re-uploading."])
+    if not files:
+        return fail(["No files reached the checker. Pick one or more .xlsx or .csv files and try again."])
+    many = len(files) > 1
 
     try:
         import pipeline
+        import data_loader as dl
     except Exception as e:
         return fail([f"The calculation engine did not load correctly ({type(e).__name__}: {str(e)[:120]}). Reload the page and try again."])
 
+    read_errors = []
     try:
-        raw, mapping = pipeline.ingest([(filename, blob)])
+        raw = dl.read_workbooks(files, errors=read_errors)
+        mapping = dl.auto_map(raw)
     except Exception as e:
         return fail([
-            "The file could not be opened as an Excel workbook. Save it as .xlsx (or CSV) and try again.",
+            "A file could not be opened as an Excel workbook. Save it as .xlsx (or CSV) and try again.",
             f"Technical detail: {type(e).__name__}: {str(e)[:150]}",
         ])
 
+    if read_errors:
+        msgs = ["Some files could not be opened as Excel workbooks, so nothing was calculated. Save them as .xlsx (or CSV) and upload again:"]
+        msgs += [f"{fn}: {msg}" for fn, msg in read_errors]
+        return fail(msgs)
+
     if not raw:
         return fail([
-            "The file opened, but no data sheets were found in it.",
+            "The files opened, but no data sheets were found in them." if many else "The file opened, but no data sheets were found in it.",
             "Download the template below and copy your data into a workbook that looks like it.",
         ])
 
@@ -234,11 +251,19 @@ def run_upload(path: str, filename: str) -> str:
     if not included:
         sheets = sorted({rs.sheet for rs in raw.values()})
         return fail([
-            "The file opened, but none of its sheets matched the Lindstrom review format.",
-            "Sheets found in your file: " + ", ".join(sheets[:12]),
+            ("The files opened, but none of their sheets matched the Lindstrom review format." if many
+             else "The file opened, but none of its sheets matched the Lindstrom review format."),
+            "Sheets found in your upload: " + ", ".join(sheets[:12]),
             "The checker recognises sheets like: " + ", ".join(EXPECTED_SHEETS[:8]) + " (and more).",
             "Download the template below and copy your data into its columns, then upload again.",
         ])
+
+    if many:
+        recognised = {raw[k].file for k, sm in mapping.items() if sm.include and sm.table}
+        unused = [n for n in filenames if n not in recognised]
+        if unused:
+            return fail(["These files contain no recognised data sheets: " + ", ".join(unused),
+                         "Nothing was calculated. Check these files against the template, or remove them and select the full set again."])
 
     try:
         V = pipeline.validate_mapping(raw, mapping)
@@ -250,8 +275,9 @@ def run_upload(path: str, filename: str) -> str:
             "Compare your columns with the template below - a missing or renamed required column is the usual cause.",
         ])
 
+    label = ("uploaded files: " if many else "uploaded file: ") + ", ".join(filenames)
     try:
-        payload = build_payload(T, V["issues"], log, f"uploaded file: {filename}")
+        payload = build_payload(T, V["issues"], log, label)
     except Exception as e:
         return fail([
             "The checks passed, but calculating the review numbers failed.",
@@ -260,7 +286,7 @@ def run_upload(path: str, filename: str) -> str:
 
     if not payload["customers"]:
         return fail([
-            "The file was read, but no customers were found in it.",
+            "The upload was read, but no customers were found in it.",
             "Make sure the workbook has a Customers sheet with at least one customer row, like the template below.",
         ])
 
