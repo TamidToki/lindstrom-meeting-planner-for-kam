@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Customer Value & Sustainability Review - Astryx demo</title>
+    <title>KAM Meeting Assistant - Customer Value & Sustainability Review</title>
     <style>
       #astryx-theme-toggle{position:fixed;top:10px;right:14px;z-index:99999;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;line-height:1;box-shadow:0 1px 4px rgba(0,0,0,.18);border:1px solid #ccd0d5;background:#ffffff;color:#1c1e21}
       #astryx-theme-toggle{border-color:light-dark(#ccd0d5,#3e4042);background:light-dark(#ffffff,#242526);color:light-dark(#1c1e21,#e4e6eb)}
@@ -25,6 +25,8 @@
       #astryx-start-over{position:fixed;right:14px;bottom:14px;z-index:9980;min-height:40px;padding:8px 16px;border-radius:999px;border:1px solid light-dark(#ccd0d5,#3e4042);background:light-dark(#ffffff,#242526);color:light-dark(#1c1e21,#e4e6eb);box-shadow:0 1px 4px rgba(0,0,0,.18);cursor:pointer;font-size:14px;font-weight:600;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
       #astryx-start-over:hover{background:light-dark(#f0f2f5,#3a3b3c)}
       #astryx-start-over:focus-visible{outline:2px solid #0064e0;outline-offset:2px}
+      #astryx-credit{position:fixed;left:14px;bottom:16px;z-index:9970;font-size:12px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:light-dark(#606770,#b0b3b8)}
+      #astryx-credit a{color:inherit}
       @media(max-width:600px){.astryx-landing-actions{flex-direction:column}.astryx-landing-card{padding:28px 20px}.astryx-landing-card h1{font-size:22px}}
     </style>
     <script>
@@ -101,14 +103,14 @@
         });
       })();
     </script>
-    <script type="module" crossorigin src="./assets/index-C-Bl0vDn.js?v=upload-gate-20261115"></script>
+    <script type="module" crossorigin src="./assets/index-C-Bl0vDn.js?v=client-review-fixes-20261115"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-DQ9Rr0Fk.css">
   <style>@media(max-width:600px){.astryx-tab-strip{flex-wrap:wrap!important;height:auto!important;overflow:visible!important;gap:0!important}.astryx-tab{min-height:44px!important;padding:8px!important}}</style></head>
   <body>
     <div id="astryx-landing" role="dialog" aria-label="Start screen">
       <div class="astryx-landing-card">
         <h1>Customer Value &amp; Sustainability Review</h1>
-        <p class="astryx-landing-sub">Astryx demo for Lindstr&ouml;m key account managers</p>
+        <p class="astryx-landing-sub">KAM Meeting Assistant for Lindstr&ouml;m key account managers</p>
         <div class="astryx-landing-actions">
           <button id="astryx-landing-upload" type="button" class="astryx-landing-btn astryx-landing-primary">Upload your files</button>
           <button id="astryx-landing-sample" type="button" class="astryx-landing-btn astryx-landing-secondary">Load synthetic data</button>
@@ -118,5 +120,6 @@
     </div>
     <button id="astryx-start-over" type="button" style="display:none" aria-label="Start over and return to the start screen">Start over</button>
     <div id="root"></div>
+    <div id="astryx-credit">Built with <a href="https://github.com/meta/astryx" target="_blank" rel="noopener">Astryx</a>, Meta&#39;s open-source design system</div>
   </body>
 </html>
