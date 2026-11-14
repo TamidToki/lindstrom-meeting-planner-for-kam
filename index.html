@@ -6,6 +6,55 @@
     <title>Customer Value & Sustainability Review - Astryx demo</title>
     <script type="module" crossorigin src="./assets/index-BRLmDtcz.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-DQ9Rr0Fk.css">
+    <style>
+      #astryx-theme-toggle{position:fixed;top:10px;right:14px;z-index:99999;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;line-height:1;box-shadow:0 1px 4px rgba(0,0,0,.18);border:1px solid #ccd0d5;background:#ffffff;color:#1c1e21}
+      #astryx-theme-toggle{border-color:light-dark(#ccd0d5,#3e4042);background:light-dark(#ffffff,#242526);color:light-dark(#1c1e21,#e4e6eb)}
+      #astryx-theme-toggle:focus-visible{outline:2px solid #0064e0;outline-offset:2px}
+      body *{color-scheme:inherit !important}
+    </style>
+    <script>
+      (function () {
+        var KEY = "astryx-demo-theme";
+        var doc = document.documentElement;
+        var SUN = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
+        var MOON = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 21 9.8z"/></svg>';
+        function systemMode() {
+          return window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
+        function stored() {
+          try { var v = localStorage.getItem(KEY); return v === "light" || v === "dark" ? v : null; } catch (e) { return null; }
+        }
+        var mode = "light";
+        function apply(next) {
+          var m = next === "light" || next === "dark" ? next : systemMode();
+          mode = m;
+          doc.style.colorScheme = m;
+          doc.setAttribute("data-theme", m);
+          var b = document.getElementById("astryx-theme-toggle");
+          if (b) {
+            b.innerHTML = m === "dark" ? SUN : MOON;
+            var label = m === "dark" ? "Switch to light mode" : "Switch to dark mode";
+            b.setAttribute("aria-label", label);
+            b.title = label;
+          }
+        }
+        function toggle() {
+          var next = mode === "dark" ? "light" : "dark";
+          try { localStorage.setItem(KEY, next); } catch (e) {}
+          apply(next);
+        }
+        apply(stored());
+        document.addEventListener("DOMContentLoaded", function () {
+          if (document.getElementById("astryx-theme-toggle")) return;
+          var b = document.createElement("button");
+          b.id = "astryx-theme-toggle";
+          b.type = "button";
+          b.addEventListener("click", toggle);
+          document.body.appendChild(b);
+          apply(stored());
+        });
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
