@@ -558,7 +558,7 @@ function DataMethodTab({data}: {data: DemoData}) {
         The pipeline reads the Excel pack, classifies every sheet into the internal model, maps
         columns and units, and only then calculates. Cross-sheet validation issues are reviewed
         below; in the full Streamlit app the KAM decides per issue (exclude rows or keep and flag)
-        before any number is computed. This web demo applies the default headless decisions.
+        before any number is computed. This web demo applies the default headless decisions. The per-issue review step from the proposal happens in the full app (a separate Streamlit link), not in this web demo.
       </Text>
       <Card>
         <VStack gap={4}>
@@ -574,7 +574,7 @@ function DataMethodTab({data}: {data: DemoData}) {
             <ListItem label='Each metric carries a status (CALCULATED / ALLOCATED / ESTIMATED), a formula, and a Low-High range where assumptions vary.' />
             <ListItem label='Water, energy and CO2 savings are relative to the selected baseline in the pack; baseline intensities are illustrative pack values.' />
             <ListItem label='Data is the synthetic sample pack (data/pack.xlsx): fictional customers, sites and activity for demo purposes only.' />
-            <ListItem label='The Streamlit app (repo root) remains the reference implementation with upload, review workflow, Analyst chat and PowerPoint export; this Astryx app re-presents its computed results.' />
+            <ListItem label='The Streamlit app (repo root) remains the reference implementation with upload, review workflow, Analyst chat and PowerPoint export; this web app re-presents its computed results.' />
           </List>
         </VStack>
       </Card>
@@ -616,7 +616,7 @@ export default function App() {
           <VStack gap={6}>
             <HStack gap={3} vAlign="center">
               <Heading level={1}>Customer Value &amp; Sustainability Review</Heading>
-              <Badge variant="purple" label="Astryx UI demo" />
+              <Badge variant="purple" label="KAM Meeting Assistant" />
             </HStack>
             <Text type="supporting" color="secondary">
               Lindström x Since AI 2026, Team Predictable. A tool for the Key Account Manager:
