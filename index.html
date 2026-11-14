@@ -95,13 +95,13 @@
           var sm = byId("astryx-landing-sample");
           var so = byId("astryx-start-over");
           if (up) up.addEventListener("click", function () { hideLanding(); clickAppFileInput(); });
-          if (sm) sm.addEventListener("click", function () { hideLanding(); });
+          if (sm) sm.addEventListener("click", function () { window.__astryxLoadSynthetic = true; hideLanding(); window.dispatchEvent(new Event("astryx-load-synthetic")); });
           if (so) so.addEventListener("click", function () { window.location.reload(); });
           if (up) up.focus();
         });
       })();
     </script>
-    <script type="module" crossorigin src="./assets/index-C-Bl0vDn.js?v=landing-20261115"></script>
+    <script type="module" crossorigin src="./assets/index-C-Bl0vDn.js?v=upload-gate-20261115"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-DQ9Rr0Fk.css">
   <style>@media(max-width:600px){.astryx-tab-strip{flex-wrap:wrap!important;height:auto!important;overflow:visible!important;gap:0!important}.astryx-tab{min-height:44px!important;padding:8px!important}}</style></head>
   <body>
